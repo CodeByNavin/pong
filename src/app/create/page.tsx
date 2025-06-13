@@ -40,9 +40,11 @@ export default function CreatePage() {
 
     const handleStartGame = () => {
         if (socketRef.current) {
-            console.log("Socket connected:", socketRef.current.connected);
-            console.log("Emitting Start_Game with code:", code);
-            socketRef.current.emit("Start_Game", { data: { code } });
+            setTimeout(() => {
+                console.log("Socket connected:", socketRef.current?.connected);
+                console.log("Emitting Start_Game with code:", code);
+                socketRef.current?.emit("message", { message: "Start_Game", data: { code } });
+            }, 100);
         } else {
             console.log("Socket not initialized");
         }
@@ -57,7 +59,7 @@ export default function CreatePage() {
                 {code ? (
                     <>
                         <p
-                            className="text-xl hover:cursor-pointer"
+                            className="text-xl cursor-pointer"
                             onClick={() => {
                                 navigator.clipboard.writeText(code);
                                 alert("Room code copied to clipboard!");
@@ -87,7 +89,7 @@ export default function CreatePage() {
                 <div className="mt-8 gap-3 flex flex-col sm:flex-row">
                     <button
                         onClick={handleStartGame}
-                        className="px-6 py-3 bg-secondary text-white rounded transition-colors hover:bg-secondary hover:cursor-pointer"
+                        className="px-6 py-3 bg-secondary text-white rounded transition-colors hover:bg-secondary cursor-pointer"
                     >
                         Start Game
                     </button>

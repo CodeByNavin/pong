@@ -4,7 +4,6 @@ import { readData} from '@/helpers/db/db'
 
 
 export default async function StartGame(socket: SocketIOClient.Socket, io: Server, data: any) {
-    console.log(`StartGame called with data:`, data);
 
     const rooms = await readData("rooms");
     const roomData = rooms[data.code] || {};
@@ -14,7 +13,7 @@ export default async function StartGame(socket: SocketIOClient.Socket, io: Serve
         return socket.emit('InvalidRoom', `Room with code ${data.code} does not exist.`);
     }
 
-    if (roomData.player.length !== 2) {
+    if (roomData.players.length !== 2) {
         console.error(`Room with code ${data.code} is already full.`);
         return socket.emit('InvalidRoom', `Room with code ${data.code} is full or has 1 person.`);
     }

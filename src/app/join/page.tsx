@@ -52,7 +52,7 @@ export default function JoinPage() {
                 />
                 <button
                     onClick={() => handleJoinRoom(InputCode)}
-                    className="self-center px-6 py-3 bg-gray-300 text-primary rounded hover:bg-gray-400 hover:cursor-pointer transition-colors"
+                    className="self-center px-6 py-3 bg-gray-300 text-primary rounded hover:bg-gray-400 cursor-pointer transition-colors"
                 >
                     Join Room
                 </button>

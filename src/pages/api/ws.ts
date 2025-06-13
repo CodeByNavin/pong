@@ -60,7 +60,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                     return;
                 }
                 const system = wsMessages[messageKey];
-                console.log(system)
                 system.exec(socket, io, parsedMessage.data);
             });
         });
