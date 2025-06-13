@@ -1,0 +1,42 @@
+{
+  "rooms": {
+    "room-6dabe104": {
+      "createdAt": "2025-06-13T03:05:11.139Z",
+      "players": [
+        {
+          "id": "Fq16au0iR1dO8FuWAAAB",
+          "name": "Player-1"
+        },
+        {
+          "id": "lTgjgFg402alBBpUAAAH",
+          "name": "Player-2"
+        }
+      ],
+      "paddles": [
+        {
+          "id": "Fq16au0iR1dO8FuWAAAB",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "size": {
+            "width": 10,
+            "height": 100
+          }
+        },
+        {
+          "id": "lTgjgFg402alBBpUAAAH",
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "size": {
+            "width": 10,
+            "height": 100
+          }
+        }
+      ],
+      "createdBy": "Fq16au0iR1dO8FuWAAAB"
+    }
+  }
+}
