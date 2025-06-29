@@ -30,7 +30,8 @@ export default function CreatePage() {
 
         socket.on("GameStarted", (msg) => {
             console.log("Game started:", msg);
-            router.push(`/game/${code}`);
+            const roomCode = msg.data?.code || code;
+            router.push(`/game?id=${roomCode}`);
         })
 
         return () => {

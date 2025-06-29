@@ -1,8 +1,8 @@
 import crypto from 'crypto';
-import * as SocketIOClient from 'socket.io-client';
-import { addOrUpdateRoom, readData} from '@/helpers/db/db'
+import { Socket } from "socket.io";
+import { addOrUpdateRoom, readData } from '@/helpers/db/db'
 
-export default async function makeRoom(socket: SocketIOClient.Socket) {
+export default async function makeRoom(socket: Socket) {
     const id = crypto.randomBytes(4).toString('hex');
 
     const roomName = `room-${id}`;

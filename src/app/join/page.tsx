@@ -24,7 +24,7 @@ export default function JoinPage() {
 
         socketRef.current.on("GameStarted", (msg) => {
             console.log("Game started:", msg);
-            router.push(`/game/${InputCode}`);
+            router.push(`/game?id=${InputCode}`);
         })
 
         socket.on("InvalidRoom", (msg) => {

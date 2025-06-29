@@ -1,15 +1,15 @@
-import * as SocketIOClient from 'socket.io-client';
-import { addOrUpdateRoom, readData} from '@/helpers/db/db'
-import { Server } from 'socket.io';
 
-export default async function JoinRoom(socket: SocketIOClient.Socket, io: Server, id: string, ) {
-    
+import { addOrUpdateRoom, readData } from '@/helpers/db/db'
+import { Server, Socket } from 'socket.io';
+
+export default async function JoinRoom(socket: Socket, io: Server, id: string,) {
+
     const rooms = await readData("rooms");
     const data = rooms[id] || {};
 
     if (!data) {
         console.error(`Room with ID ${id} does not exist.`);
-        return socket.emit('InvalidRoom', `Room with ID ${id} does not exist.` );
+        return socket.emit('InvalidRoom', `Room with ID ${id} does not exist.`);
     };
 
     await addOrUpdateRoom(id, {

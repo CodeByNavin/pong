@@ -1,9 +1,8 @@
-import * as SocketIOClient from 'socket.io-client';
-import { Server } from 'socket.io';
-import { readData} from '@/helpers/db/db'
+import { Server, Socket } from "socket.io";
+import { readData } from '@/helpers/db/db'
 
 
-export default async function StartGame(socket: SocketIOClient.Socket, io: Server, data: any) {
+export default async function StartGame(socket: Socket, io: Server, data: any) {
 
     const rooms = await readData("rooms");
     const roomData = rooms[data.code] || {};
@@ -25,7 +24,10 @@ export default async function StartGame(socket: SocketIOClient.Socket, io: Serve
     console.log(`Game started in room: ${data.code} with players:`, roomData.players);
     io.to(data.code).emit('GameStarted', {
         message: `Game started in room: ${data.code}`,
-        data: roomData
+        data: {
+            roomData,
+            code: data.code
+        }
     });
 
     return;
