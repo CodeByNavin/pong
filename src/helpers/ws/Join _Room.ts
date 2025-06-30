@@ -1,5 +1,6 @@
 
 import { addOrUpdateRoom, readData } from '@/helpers/db/db'
+import { read } from 'fs';
 import { Server, Socket } from 'socket.io';
 
 export default async function JoinRoom(socket: Socket, io: Server, id: string,) {
@@ -12,6 +13,11 @@ export default async function JoinRoom(socket: Socket, io: Server, id: string,) 
         return socket.emit('InvalidRoom', `Room with ID ${id} does not exist.`);
     };
 
+    if (data.players && data.players.some((player: any) => player.id === socket.id)) {
+        console.log(`Player ${socket.id} is already in room: ${id}`);
+        return socket.emit('AlreadyInRoom', `You are already in room: ${id}`);
+    }
+
     await addOrUpdateRoom(id, {
         ...data,
         players: [
@@ -19,6 +25,7 @@ export default async function JoinRoom(socket: Socket, io: Server, id: string,) 
             {
                 id: socket.id,
                 name: `Player-${data.players ? data.players.length + 1 : 1}`,
+                ready: false
             }
         ],
         paddles: [

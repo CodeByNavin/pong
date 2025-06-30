@@ -14,6 +14,7 @@ export default async function makeRoom(socket: Socket) {
             {
                 id: socket.id,
                 name: `Player-1`,
+                ready: false
             }
         ],
         paddles: [

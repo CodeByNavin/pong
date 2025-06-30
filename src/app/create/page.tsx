@@ -15,7 +15,7 @@ export default function CreatePage() {
         const { socket } = initWebSocketClient();
         socketRef.current = socket;
 
-        socket.emit("message", { message: "Make_Room" });
+        socket.emit("message", { system: "Make_Room" });
         socket.on("roomCreated", (msg) => {
             console.log("Message received from server:", msg);
 
@@ -44,7 +44,7 @@ export default function CreatePage() {
             setTimeout(() => {
                 console.log("Socket connected:", socketRef.current?.connected);
                 console.log("Emitting Start_Game with code:", code);
-                socketRef.current?.emit("message", { message: "Start_Game", data: { code } });
+                socketRef.current?.emit("message", { system: "Start_Game", data: { code } });
             }, 100);
         } else {
             console.log("Socket not initialized");

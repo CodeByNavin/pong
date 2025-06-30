@@ -1,4 +1,5 @@
 import Game_KeyEvent from "@/helpers/ws/Game_KeyEvent";
+import Game_Ready from "@/helpers/ws/Game_Ready";
 import Game_Screen from "@/helpers/ws/Game_Screen";
 import JoinRoom from "@/helpers/ws/Join _Room";
 import makeRoom from "@/helpers/ws/Make_Room";
@@ -25,6 +26,9 @@ const wsMessages: Record<string, Data> = {
     },
     "Game_Screen": {
         exec: Game_Screen
+    },
+    "Game_Ready": {
+        exec: Game_Ready
     }
 };
 

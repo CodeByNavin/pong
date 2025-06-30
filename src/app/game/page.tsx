@@ -38,7 +38,7 @@ export default function GamePage() {
     useEffect(() => {
         if (gameId && socketRef.current) {
             console.log("Emitting Ready with gameId:", gameId);
-            socketRef.current.emit("Game_Ready", { data: { code: gameId } });
+            socketRef.current.emit("message", { system: "Game_Ready", data: { id: gameId } });
 
             socketRef.current.on("GameStarted", (msg) => {
                 console.log("Game started:", msg);

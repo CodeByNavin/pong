@@ -23,7 +23,7 @@ export default async function StartGame(socket: Socket, io: Server, data: any) {
 
     console.log(`Game started in room: ${data.code} with players:`, roomData.players);
     io.to(data.code).emit('GameStarted', {
-        message: `Game started in room: ${data.code}`,
+        system: `Game started in room: ${data.code}`,
         data: {
             roomData,
             code: data.code

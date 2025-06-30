@@ -14,7 +14,7 @@ export default function JoinPage() {
         const { socket } = initWebSocketClient();
         socketRef.current = socket;
 
-        socket.emit("message", { message: "Join_Room", data: roomCode });
+        socket.emit("message", { system: "Join_Room", data: roomCode });
         console.log("Joining room with code:", roomCode);
 
         socket.on("JoinedRoom", (msg) => {

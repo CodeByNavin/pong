@@ -4,7 +4,7 @@ import wsMessages from "@/configs/ws_messages";
 
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-    console.log(`[${new Date().toISOString()}] Incoming ${req.method} request to /api/ws`);
+    //console.log(`[${new Date().toISOString()}] Incoming ${req.method} request to /api/ws`);
 
     // @ts-ignore
     if (!res.socket?.server.io) {
@@ -14,7 +14,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
         io.on("connection", (socket) => {
             console.log(`[${new Date().toISOString()}] New client connected: ${socket.id}`);
-            socket.emit("message", { message: "Welcome to the WebSocket server!" });
+            socket.emit("message", { system: "Welcome to the WebSocket server!" });
 
             socket.on("disconnect", (reason) => {
                 if (res.socket && (res.socket as any).server && (res.socket as any).server.io) {
@@ -24,7 +24,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
             });
 
-           socket.on("message", (rawMessage) => {
+            socket.on("message", (rawMessage) => {
                 let parsedMessage;
                 // Check if the message is a string before attempting to parse it
                 if (typeof rawMessage === "string") {
@@ -42,7 +42,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
                     parsedMessage = rawMessage;
                 }
 
-                const messageKey = parsedMessage?.message || parsedMessage;
+                const messageKey = parsedMessage?.system || parsedMessage;
 
                 console.log(
                     `[${new Date().toISOString()}] Message from ${socket.id}: ${JSON.stringify(
